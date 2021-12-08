@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Weather App</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./index.css" />
+</head>
+<body>
+  <!-- Блоки, которые отмечена как COMPONENT необходимо выносить в отдельный JS файл. Используем их в таком случае прямо из JS. Т.е. по необходимости вставляем  -->
+  <h1 class="title">
+    Weather App
+  </h1>
+  <!-- Значение даты получаем из new Date(Date.now()). Методы: getDate, getMonth, getFullYear -->
+  <!-- P.S. обратите внимание, что getMonth стартует в нуля) -->
+  <h1 class="date">
+    Today: 11.05.2021
+  </h1>
+  <!-- ЗАДАНИЕ НА КОМПОНЕНТЫ: Этот компонент должен отображаться сразу при загрузке страницы -->
+  <div class="container" data-component>
+    <div class="input-container">
+      <!-- Когда происходит запрос к API необходимо добавлять аттрибут disabled к input и button что бы предотвратить другие запросы -->
+      <!-- После того, как запрос пройдет, атрибуты disabled необходимо удалить -->
+      <input class="input input--search" placeholder="Enter city or country name" type="text" />
+      <button class="button button--search">Search</button>
+      <!-- ДОПОЛНИТЕЛЬНОЕ ЗАДАНИЕ: Реализовать поиск по геолокации. -->
+      <!-- Для получения информации о геолокации необходимо по клику на кнопку вызвать метод navigator.geolocation.getCurrentPosition((value) => {}) -->
+      <!-- В качестве первого аргумента этот метод принимает функцию succces, второй параметр это функция error -->
+      <!-- Функция success в качестве аргумента принимает value. При успешном выполнении внутри этого value будет объект coords, который содержит поля latitude м longitude  -->
+      <!-- По этим координатам необходимо делать запрос к API /current. Надо посмотреть в документации, каким образом можно выполнить запрос по географическим координатам, там это есть -->
+      <!-- При нажатии на кнопку должно появиться системное браузерное окно, которое запросит разрешение на доступ к геопозиции -->
+      <!-- При выволнении запроса по геокоординатам флоу остается такой же, инпут и кнопки необходимо блокировать, потом отображать loader и т.д.  -->
+      <button class="button button-geolocation">
+        <img src="./images/map.svg" alt="Geolocation">
+      </button>
+    </div>
+    <!-- В случае ошибки выводим текст message в этот блок. В противном случае он отображаться в HTML не должен. -->
+    <div class="error hidden">Oops, Something Went Wrong.</div>
+  </div>
+  <!-- До того момента, пока пользователь не введет что-нибудь в input и не нажмет search, никаких блоков под ним быть не должно. -->
+  <!-- Т.е. изначальное состояние вашего приложения это заголовок и блок с инпутом. -->
+  
+  <img src="./images/loading.svg" class="loader hidden"></img>
+  <script src="./js/index.js" type="module"></script>
+</body>
+</html>
